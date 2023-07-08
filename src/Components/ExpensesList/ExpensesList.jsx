@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import Table from "react-bootstrap/Table";
 import { format } from "date-fns";
 import Button from "react-bootstrap/esm/Button";
+import { Link } from "react-router-dom";
 
 export const ExpensesList = ({
   allExpenses,
   deleteExpense,
   totalAmount,
-  editExpense,
 }) => {
   /*   const totale = allExpenses.amount.filter((a, b) => a + b); */
   const currentDate = new Date();
@@ -34,13 +34,15 @@ export const ExpensesList = ({
           </Button>
         </td>
         <td>
-          {" "}
-          <Button
+          <Link className="btn btn-info" to={`/update/${singleExpense.id}`}>
+            <i className="bi bi-pencil-square"></i>
+          </Link>
+          {/*           <Button
             variant="outline-info"
             onClick={() => editExpense(singleExpense.id)}
           >
             edit
-          </Button>
+          </Button> */}
         </td>
       </tr>
     );
@@ -48,6 +50,9 @@ export const ExpensesList = ({
 
   return (
     <>
+      <Link className="btn btn-info" to="/addExpense">
+        AddExpense
+      </Link>
       <Table striped>
         <thead>
           <tr>
